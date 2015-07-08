@@ -25,8 +25,8 @@ import java.util.*;
 
 public class SaltybetClient {
 
-    final HttpHost host;
-    final CookieStore cookieStore;
+    private final HttpHost host;
+    private final CookieStore cookieStore;
     
     public SaltybetClient() {
         //host must have 'www' or the server will reject post requests
