@@ -22,7 +22,7 @@ public class SaltyGraph {
             return new SaltyWeight(weight.getWins() + 1, weight.getLosses());
         });
 
-        //update loosing edge
+        //update losing edge
         graph.update(loser, winner, (weight) -> {
             return new SaltyWeight(weight.getWins(), weight.getLosses() + 1);
         });
@@ -42,11 +42,9 @@ public class SaltyGraph {
     }
 
     public Record getRecord(final Player player) {
+        double totalWins = 0d, totalLosses = 0d;
 
-        double totalWins = 0d;
-        double totalLosses = 0d;
-
-        for (Edge<Player, SaltyWeight> edge : graph.retrieve(player)) {
+        for (final Edge<Player, SaltyWeight> edge: graph.retrieve(player)) {
             totalLosses += edge.getWeight().getLosses();
             totalWins += edge.getWeight().getWins();
         }

@@ -8,6 +8,9 @@ import saltybot.api.function.Stoppable;
 import saltybot.api.web.AsyncClient;
 import saltybot.bot.exception.SaltyBotException;
 
+/**
+ * Engine provides a run method to start a salty betting bot
+ */
 public class Engine {
     private static final Logger LOGGER = LogManager.getFormatterLogger(Engine.class);
 

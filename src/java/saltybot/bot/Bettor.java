@@ -11,9 +11,11 @@ import saltybot.bot.common.Player;
 
 import java.util.Random;
 
+/**
+ * Bettor calculates a wages based on information provided by the Registrar
+ */
 public class Bettor {
-
-    private static final Logger LOGGER = LogManager.getFormatterLogger(Engine.class);
+    private static final Logger LOGGER = LogManager.getFormatterLogger(Bettor.class);
 
     private final Registrar registrar;
     private final Random random;
@@ -31,19 +33,19 @@ public class Bettor {
         final Player player2 = new Player(pairing.getPlayerTwo());
         final Odds odds = registrar.determineOdds(player1, player2);
 
-        int wager = 0, percent = 10;
+        int wager, percent = 10;
         Player favored =  odds.getFavoredPlayer();
         final double winPercentage = odds.getOdds();
-
 
         if (odds.getFavored().equals(Favor.NONE)) {
             favored = random.nextGaussian() > 0 ? player1 : player2;
             percent = 2;
         }
 
-        wager =  (baseBet + (int)Math.floor(balance.getBalance() * (percent / 100d) * winPercentage));
+        wager = (baseBet + (int)Math.floor(balance.getBalance() * (percent / 100d) * winPercentage));
 
-        LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo() + " -- wagered " + wager + " on " + favored.getPlayerName() + ". Salty probability: " + odds.getOdds());
+        LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo()
+                + " -- wagered " + wager + " on " + favored.getPlayerName() + ". Salty probability: " + odds.getOdds());
 
         return new Wager(favored.getPlayerName(), wager);
     }
