@@ -35,7 +35,7 @@ public class Bettor {
 
         int wager, percent = 10;
         Favor favored =  odds.getFavored();
-        final double winPercentage = odds.getOdds();
+        double winPercentage = odds.getOdds();
 
         if (odds.getFavored().equals(Favor.NONE)) {
             favored = random.nextGaussian() > 0 ? Favor.PLAYER_ONE : Favor.PLAYER_TWO;
@@ -47,7 +47,6 @@ public class Bettor {
         LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo()
                 + " -- wagered " + wager + " on " + favored.toString() + ". Salty probability: " + odds.getOdds());
 
-        final String favoredPlayerName = favored.equals(Favor.PLAYER_ONE) ? "player1" : "player2";
-        return new Wager(favoredPlayerName, wager);
+        return new Wager(favored.toString(), wager);
     }
 }
