@@ -34,19 +34,20 @@ public class Bettor {
         final Odds odds = registrar.determineOdds(player1, player2);
 
         int wager, percent = 10;
-        Player favored =  odds.getFavoredPlayer();
+        Favor favored =  odds.getFavored();
         final double winPercentage = odds.getOdds();
 
         if (odds.getFavored().equals(Favor.NONE)) {
-            favored = random.nextGaussian() > 0 ? player1 : player2;
+            favored = random.nextGaussian() > 0 ? Favor.PLAYER_ONE : Favor.PLAYER_TWO;
             percent = 2;
         }
 
         wager = (baseBet + (int)Math.floor(balance.getBalance() * (percent / 100d) * winPercentage));
 
         LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo()
-                + " -- wagered " + wager + " on " + favored.getPlayerName() + ". Salty probability: " + odds.getOdds());
+                + " -- wagered " + wager + " on " + favored.toString() + ". Salty probability: " + odds.getOdds());
 
-        return new Wager(favored.getPlayerName(), wager);
+        final String favoredPlayerName = favored.equals(Favor.PLAYER_ONE) ? "player1" : "player2";
+        return new Wager(favoredPlayerName, wager);
     }
 }
