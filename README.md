@@ -1,1 +1,1 @@
-# saltybot
+# SaltyBot
