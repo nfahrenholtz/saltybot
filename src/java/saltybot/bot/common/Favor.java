@@ -6,16 +6,20 @@ public enum Favor {
     PLAYER_TWO("player2"),
     NONE("none");
 
-    private final String player;
+    private final String playerType;
 
-    private Favor(final String player) {
-        this.player = player;
+    private Favor(final String playerType) {
+        this.playerType = playerType;
+    }
+
+    public String getPlayerType() {
+        return playerType;
     }
 
     @Override
     public String toString() {
         return "Favor{" +
-                "player='" + player + '\'' +
+                "player='" + playerType + '\'' +
                 '}';
     }
 }
