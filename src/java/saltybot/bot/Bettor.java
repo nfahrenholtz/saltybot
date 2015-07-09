@@ -43,11 +43,13 @@ public class Bettor {
         }
 
         wager = (baseBet + (int)Math.floor(balance.getBalance() * (percent / 100d) * winPercentage));
-
-        LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo()
-                + " -- wagered " + wager + " on " + favored.toString() + ". Salty probability: " + odds.getOdds());
-
         final String favoredPlayerName = favored.equals(Favor.PLAYER_ONE) ? "player1" : "player2";
+
+        LOGGER.info("Your balance is " + balance.getBalance() + ".");
+        LOGGER.info("--- Current Match ---" );
+        LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo());
+        LOGGER.info("Wagered " + wager + " on " + (favoredPlayerName.equals("player1") ? player1.getPlayerName() : player2.getPlayerName()) + ".");
+
         return new Wager(favoredPlayerName, wager);
     }
 }

@@ -1,5 +1,7 @@
 package saltybot.bot;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import saltybot.api.common.Balance;
 import saltybot.api.common.Data;
 import saltybot.api.common.Outcome;
@@ -18,6 +20,8 @@ import java.util.Map;
  * Registrar keeps track of information about players and their odds at winning and losing vs an opponent
  */
 public class Registrar {
+
+    private static final Logger LOGGER = LogManager.getFormatterLogger(Registrar.class);
 
     private final SaltyGraph graph = new SaltyGraph();
 
@@ -59,6 +63,8 @@ public class Registrar {
         } else {
             return; //unknown victor, do nothing...
         }
+
+        LOGGER.info(winner.getPlayerName() + " wins!");
 
         graph.update(winner, loser);
     }

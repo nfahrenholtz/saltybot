@@ -28,6 +28,7 @@ public class Engine {
         client.betsUpdate(registrar::registerBets);
 
         try {
+            LOGGER.info("Salty Session Started: " + credentials.getEmail());
             final Stoppable stoppable = client.spawn(credentials);
             //thread is not a daemon so the application will not terminate
             return stoppable;
