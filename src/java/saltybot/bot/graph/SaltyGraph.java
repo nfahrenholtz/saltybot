@@ -12,7 +12,7 @@ public class SaltyGraph {
     private final DirectedGraph<Player, SaltyWeight> graph;
 
     public SaltyGraph() {
-        graph = new DirectedGraph<>();
+        graph = new DirectedGraph<>(() -> new SaltyWeight(0, 0));
     }
 
     public SaltyGraph update(final Player winner, final Player loser) {

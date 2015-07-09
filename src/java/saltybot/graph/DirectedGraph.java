@@ -2,13 +2,20 @@ package saltybot.graph;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class DirectedGraph<T, W extends Weight> {
 
     private final Map<T, Map<T, Edge<T, W>>> adjacency;
+    private final Supplier<W> defaultWeight;
 
     public DirectedGraph() {
+        this(() -> null);
+    }
+
+    public DirectedGraph(final Supplier<W> defaultWeight) {
+        this.defaultWeight = defaultWeight;
         this.adjacency = new HashMap<T, Map<T, Edge<T, W>>>() {
             @Override
             public Map<T, Edge<T, W>> get(final Object key) {
@@ -44,12 +51,13 @@ public class DirectedGraph<T, W extends Weight> {
                              final T sink,
                              final Function<W, W> action) {
         final Edge<T, W> edge = retrieve(source, sink);
-        final W weight = edge == null ? null : edge.getWeight();
+        final W weight = edge == null ? defaultWeight.get() : edge.getWeight(); //if (edge == null) then new Weight (oh wait...)
         return insert(source, sink, action.apply(weight));
     }
 
     public List<Edge<T, W>> findShortestPath(final T start, final T finish) {
 
+        //ToDo: initialize the priority queue properly with comparator (should help with performance).
         final Queue<T> vertices = new PriorityQueue<>();
         final Map<T, Double> distances = new HashMap<>(adjacency.size());
         final Map<T, Edge<T, W>> trail = new HashMap<>(adjacency.size());
