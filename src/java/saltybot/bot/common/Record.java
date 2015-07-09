@@ -17,4 +17,11 @@ public class Record {
         return totalLosses;
     }
 
+    @Override
+    public String toString() {
+        return "Record{" +
+                "totalWins=" + totalWins +
+                ", totalLosses=" + totalLosses +
+                '}';
+    }
 }

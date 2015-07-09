@@ -36,4 +36,14 @@ public class Odds {
     public double getOdds() {
         return odds;
     }
+
+    @Override
+    public String toString() {
+        return "Odds{" +
+                "playerOne=" + playerOne +
+                ", playerTwo=" + playerTwo +
+                ", favored=" + favored +
+                ", odds=" + odds +
+                '}';
+    }
 }

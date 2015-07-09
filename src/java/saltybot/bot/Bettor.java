@@ -35,7 +35,7 @@ public class Bettor {
 
         int wager, percent = 10;
         Favor favored =  odds.getFavored();
-        final double winPercentage = odds.getOdds();
+        double winPercentage = odds.getOdds();
 
         if (odds.getFavored().equals(Favor.NONE)) {
             favored = random.nextGaussian() > 0 ? Favor.PLAYER_ONE : Favor.PLAYER_TWO;
