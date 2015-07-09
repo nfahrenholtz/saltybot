@@ -103,13 +103,8 @@ public class AsyncClient {
                                 wager = betPhaseAction.apply(balance, pairing); //read from graph
 
                                 if (wager != null && wager.getWager() > 0) {
-                                    try {
-                                        client.bet(wager);
-                                    } catch (SaltyException e) {
-                                        e.printStackTrace();
-                                    }
+                                    client.bet(wager);
                                 }
-
 
                             } else if (status.equalsIgnoreCase(SaltyConstants.STATUS_LOCKED)) {
                                 final ZData data = client.zdata();
