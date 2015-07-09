@@ -65,6 +65,8 @@ public class Registrar {
         }
 
         LOGGER.info(winner.getPlayerName() + " wins!");
+        LOGGER.info("Your balance is " + balance.getBalance() + ".");
+
 
         graph.update(winner, loser);
     }

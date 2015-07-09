@@ -45,10 +45,9 @@ public class Bettor {
         wager = (baseBet + (int)Math.floor(balance.getBalance() * (percent / 100d) * winPercentage));
         final String favoredPlayerName = favored.equals(Favor.PLAYER_ONE) ? "player1" : "player2";
 
-        LOGGER.info("Your balance is " + balance.getBalance() + ".");
         LOGGER.info("--- Current Match ---" );
         LOGGER.info(pairing.getPlayerOne() + " vs. " + pairing.getPlayerTwo());
-        LOGGER.info("Wagered " + wager + " on " + (favoredPlayerName.equals("player1") ? player1.getPlayerName() : player2.getPlayerName()) + ".");
+        LOGGER.info("Wagered " + wager + " on " + (favored.toString().equals("player1") ? player1.getPlayerName() : player2.getPlayerName()) + ".");
 
         return new Wager(favoredPlayerName, wager);
     }

@@ -98,6 +98,8 @@ public class AsyncClient {
                                 final Pairing pairing = Pairing.create(state);
                                 final Outcome outcome = Outcome.create(data.getState());
 
+                                matchOutcome.accept(balance, outcome); //write to graph
+
                                 wager = betPhaseAction.apply(balance, pairing); //read from graph
 
                                 if (wager != null && wager.getWager() > 0) {
@@ -107,8 +109,6 @@ public class AsyncClient {
                                         e.printStackTrace();
                                     }
                                 }
-
-                                matchOutcome.accept(balance, outcome);
 
 
                             } else if (status.equalsIgnoreCase(SaltyConstants.STATUS_LOCKED)) {
